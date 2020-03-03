@@ -1,0 +1,15 @@
+series: bionic
+applications:
+  patchman-client:
+    charm: cs:~huntdatacenter/patchman-client
+  patchman-server:
+    charm: /tmp/charm-builds/patchman-server
+    num_units: 1
+  ubuntu:
+    charm: cs:ubuntu
+    num_units: 1
+relations:
+- - ubuntu:juju-info
+  - patchman-client:juju-info
+- - patchman-client:patchman
+  - patchman-server:patchman

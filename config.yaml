@@ -1,0 +1,6 @@
+options:
+  test:
+    type: string
+    default: "slack"
+    description: |
+      The Nagios contact name.

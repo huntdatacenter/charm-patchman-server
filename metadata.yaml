@@ -1,0 +1,14 @@
+name: patchman-server
+summary: Patchman Server
+maintainer: Sandor Zeestraten <sandor.zeestraten@ntnu.no>
+description: |
+  Patchman is a Linux Patch Status Monitoring System.
+tags:
+  - monitoring
+  - patchman
+subordinate: false
+series:
+  - bionic
+provides:
+  patchman:
+    interface: http

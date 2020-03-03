@@ -1,0 +1,28 @@
+- hosts: localhost
+  vars:
+    patchman_path: /etc/patchman
+    patchman_apache_conf: /etc/apache/conf-available/patchman.conf
+
+  tasks:
+    - name: Add Openbytes repository key
+      apt_key:
+        id: 0412F522
+        keyserver: keyserver.ubuntu.com
+
+    - name: Add Openbytes repository
+      apt_repository:
+        repo: "deb https://repo.openbytes.ie/ubuntu {{ ansible_distribution_release }} main"
+        filename: patchman
+
+    - name: Install patchman
+      apt:
+        pkg:
+          - python-patchman
+          - patchman-client
+
+    - name: Get package facts
+      package_facts:
+        manager: auto
+
+    - name: Set patchman application version
+      command: application-version-set "{{ ansible_facts.packages['patchman-client'][0]['version'] }}"
